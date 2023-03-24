@@ -878,14 +878,24 @@ a {
     margin-bottom: 97px; }
   .education-title {
     margin: 0; }
-  .education-table {
-    border-top: 1px solid #FDE3A7; }
-    .education-table__row {
-      border-bottom: 1px solid #FDE3A7;
-      padding: 40px 0;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center; }
+
+
+.education-table {
+  border-top: 1px solid #FDE3A7; 
+  margin-bottom: 68px;
+}
+
+
+.education-table__row {
+  border-bottom: 1px solid #FDE3A7;
+  padding: 20px 0;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; 
+  justify-content: space-between;
+  display: flex;
+}
+
     .education-table__txt {
       font-family: "NeueMontreal-Regular", sans-serif;
       font-size: 28px;
@@ -902,7 +912,7 @@ a {
 }
 
 .education-table__cell {
-  margin-bottom: 20px; 
+  /* margin-bottom: 20px;  */
 }
 
 .education-table__cell:last-child {
@@ -928,24 +938,6 @@ a {
   justify-content: center; 
 }
 
-    .education .swiper-buttons .swiper-button-prev, .education .swiper-buttons .swiper-button-next {
-      position: relative;
-      z-index: 10;
-      left: inherit;
-      right: inherit;
-      margin: 0 20px;
-      width: 40px;
-      height: 40px;
-      background-repeat: no-repeat;
-      background-position: center; }
-      .education .swiper-buttons .swiper-button-prev:after, .education .swiper-buttons .swiper-button-next:after {
-        content: none; }
-      .education .swiper-buttons .swiper-button-prev:focus, .education .swiper-buttons .swiper-button-next:focus {
-        outline: none; }
-    .education .swiper-buttons .swiper-button-prev {
-      background-image: url(../images/prev.svg); }
-    .education .swiper-buttons .swiper-button-next {
-      background-image: url(../images/next.svg); }
 
 /* 4.6 Main - Projects section. Fourth section */
 .projects-list {
@@ -1066,7 +1058,7 @@ a {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #FDE3A7;
-  margin: 0 0 27px; 
+  margin: 0 0 20px; 
 }
 
 .services-item__descr {
@@ -1074,6 +1066,7 @@ a {
   font-size: 15px;
   line-height: 130%;
   color: #FDE3A7; 
+  padding: 2px;
 }
 
 /* 4.8 Main - Reviews section. Sixth section */
@@ -1227,26 +1220,36 @@ a {
   height: 75%; 
 }
 
-  .contact-title {
-    margin: 0 0 45px; }
-  .contact-subtitle {
-    margin: 0 0 10px;
-    font-family: "NeueMontreal-Regular", sans-serif;
-    font-size: 15px;
-    line-height: 130%;
-    letter-spacing: 0.075em;
-    text-transform: uppercase;
-    color: #a95847; }
-  .contact-descr {
-    font-family: "NeueMontreal-Regular", sans-serif;
-    font-size: 15px;
-    line-height: 130%;
-    color: #FDE3A7;
-    width: 80%; }
-    .contact-logos__item {
-      margin-bottom: 50px; }
-      .contact-logos__item img {
-        max-width: 100%; }
+.contact-title {
+  margin: 0 0 45px; 
+}
+
+.contact-subtitle {
+  margin: 0 0 10px;
+  font-family: "NeueMontreal-Regular", sans-serif;
+  font-size: 15px;
+  line-height: 130%;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  color: #a95847; 
+}
+
+.contact-descr {
+  font-family: "NeueMontreal-Regular", sans-serif;
+  font-size: 15px;
+  line-height: 130%;
+  color: #FDE3A7;
+  width: 80%; 
+}
+
+.contact-logos__item {
+  margin-bottom: 50px; 
+}
+
+.contact-logos__item img {
+  max-width: 100%; 
+}
+
   .contact-info__mail, .contact-info__phone {
     display: block;
     color: #FDE3A7;
@@ -1266,51 +1269,60 @@ a {
   .contact-form .form-group {
     position: relative;
     margin-bottom: 60px; }
-    .contact-form .form-group .form-label {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      font-family: "NeueMontreal-Regular", sans-serif;
-      font-size: 15px;
-      line-height: 100%;
-      letter-spacing: 0.075em;
-      text-transform: uppercase;
-      color: #FDE3A7;
-      transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
-      transition: transform 150ms ease-out, font-size 150ms ease-out;
-      transition: transform 150ms ease-out, font-size 150ms ease-out, -webkit-transform 150ms ease-out; }
-    .contact-form .form-group.focused .form-label {
-      -webkit-transform: translateY(-15px);
-              transform: translateY(-15px);
-      font-size: .75em; }
-  .contact-form .form-control {
-    height: 35px;
-    border: 0;
-    background: transparent;
-    border-bottom: 1px solid #FDE3A7;
-    width: 100%;
-    border-radius: 0;
-    -webkit-appearance: inherit;
+  .contact-form .form-group .form-label {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-family: "NeueMontreal-Regular", sans-serif;
     font-size: 15px;
     line-height: 100%;
-    padding: 0;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
     color: #FDE3A7;
-    font-family: "NeueMontreal-Regular", sans-serif; }
-    .contact-form .form-control:focus {
-      outline: none; }
-  .contact-form textarea.form-control {
-    height: 90px; }
-  .contact-form .error {
-    display: block;
-    color: #a95847;
-    margin-top: 10px; }
-  .contact-btn {
-    border: 0;
-    cursor: pointer;
-    -webkit-appearance: inherit;
-    border-radius: 0; }
+    transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+    transition: transform 150ms ease-out, font-size 150ms ease-out;
+    transition: transform 150ms ease-out, font-size 150ms ease-out, -webkit-transform 150ms ease-out; }
+  .contact-form .form-group.focused .form-label {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+    font-size: .75em; }
+.contact-form .form-control {
+  height: 35px;
+  border: 0;
+  background: transparent;
+  border-bottom: 1px solid #FDE3A7;
+  width: 100%;
+  border-radius: 0;
+  -webkit-appearance: inherit;
+  font-size: 15px;
+  line-height: 100%;
+  padding: 0;
+  color: #FDE3A7;
+  font-family: "NeueMontreal-Regular", sans-serif; }
+  .contact-form .form-control:focus {
+    outline: none; }
+.contact-form textarea.form-control {
+  height: 90px; 
+}
 
+.contact-form .error {
+  display: block;
+  color: #a95847;
+  margin-top: 10px; 
+}
+
+.contact-btn {
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: inherit;
+  border-radius: 0; 
+}
+
+.education-btns {
+  width: 260px;
+  margin-top: 50px;
+}
 /* 6. Modal */
 .modal.show {
   display: block;
