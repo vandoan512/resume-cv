@@ -30,7 +30,7 @@ function loader() {
 function pagepiling() {
   if ($('.js-sections').length) {
     $('.js-sections').pagepiling({
-      anchors: ['home', 'about', 'projects', 'skill', 'contact'],
+      anchors: ['home', 'experience', 'projects', 'skill', 'contact'],
       menu: '#navbar',
       navigation: false,
       onLeave: function onLeave(index, nextIndex, direction) {
