@@ -1,376 +1,566 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
-    <title>Main</title>
-    <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="format-detection" content="telephone=no">
-    <link rel="shortcut icon" href="images/favicons/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/favicons/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="images/favicons/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="images/favicons/android-chrome-96x96.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
-    <link rel="manifest" href="images/favicons/manifest.json">
-    <link rel="yandex-tableau-widget" href="images/favicons/yandex-browser-manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="images/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="css/main.css">
+    <title>Gsap</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon_1.ico" type="image/x-icon">
+    <style>
+      @keyframes animate-circle {
+      	from {
+      		transform: scale(0);
+      		opacity: 1;
+      	}
+      	to {
+      		transform: scale(1);
+      		opacity: 0;
+      	}
+      }
+      #preloader{
+      	width: 100%;
+      	height: 100%;
+      	position: fixed;
+      	top: 0;
+      	left: 0;
+      	z-index: 999;
+      	background: #1C1C1C;
+      	background: linear-gradient(to right, rgba(36, 31, 31, 1) 0%, rgba(36, 31, 31, 1) 32%, rgba(74, 71, 70, 1) 100%);
+      }
+      .loader {
+      	position: fixed;
+      	top: 50%;
+      	left: 50%;
+      	height: 10rem;
+      	width: 10rem;
+      	transform: translateX(-50%) translateY(-50%);
+      }
+      .loader > .circle {
+      	position: absolute;
+      	height: inherit;
+      	width: inherit;
+      	background: #B66449;
+      	border-radius: 0;
+      	animation: animate-circle 2s cubic-bezier(.9, .24, .62, .79) infinite;
+      }
+      .loader > .circle:nth-of-type(1) {
+      	animation-delay: 0s;
+      }
+      .loader > .circle:nth-of-type(2) {
+      	animation-delay: calc(2s / -3);
+      }
+      .loader > .circle:nth-of-type(3) {
+      	animation-delay: calc(2s / -6);
+      }
+    </style>
   </head>
-  
   <body>
-    <div class="loader">
-      <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
+    <div id="preloader">
+      <div class="loader">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
       </div>
     </div>
-    <!-- header, page nav-->
-    <header class="header">
-      <div class="header-inner">
-        <div class="header-logo">
-          <span class="header-logo__txt">
-            <img src="images/logo.jpg" alt="">
-          </span>
+    <main class="main main--home" style="opacity:0">
+      <canvas class="noise" id="noise"></canvas>
+      <div class="header">
+        <div class="header__left">
+          <div class="header__letter">P</div>
+          <div class="header__socials"><a href="" target="_blank">
+              <svg>
+                <use xlink:href="./svg/sprite.svg#fb"></use>
+              </svg></a><a href="" target="_blank">
+              <svg>
+                <use xlink:href="./svg/sprite.svg#tw"></use>
+              </svg></a><a href="" target="_blank">
+              <svg>
+                <use xlink:href="./svg/sprite.svg#in"></use>
+              </svg></a></div>
         </div>
-        <div class="container">
-          <div class="header-cnt js-header-cnt">
-            <div class="header-cnt-top">
-              <ul class="header-lang">
-                <li class="header-lang__item"><a class="header-lang__link" href="#">VIE</a></li>
-                <li class="header-lang__item active"><a class="header-lang__link" href="#">ENG</a></li>
-              </ul>
-              <nav class="header-nav">
-                <ul class="nav-list" id="navbar">
-                  <li class="nav-item" data-menuanchor="home"><a class="nav-link" href="index.html#home">home</a></li>
-                  <li class="nav-item" data-menuanchor="experience"><a class="nav-link" href="index.html#experience">experience</a></li>
-                  <li class="nav-item" data-menuanchor="projects"><a class="nav-link" href="index.html#projects">projects</a></li>
-                  <li class="nav-item" data-menuanchor="skill"><a class="nav-link" href="index.html#skill">skills</a></li>
-                  <li class="nav-item" data-menuanchor="contact">
-                    <a class="nav-link" href="index.html#contact">contact</a>
+        <div class="header__right">
+          <ul class="header__menu">
+            <li class="active"><a class="js-scroll-link" href="javascript:;" data-link="0">HOME</a></li>
+            <li><a class="js-scroll-link" href="javascript:;" data-link="1">Projects</a></li>
+            <li><a class="js-scroll-link" href="javascript:;" data-link="2">awwards</a></li>
+            <li><a class="js-scroll-link" href="javascript:;" data-link="3">testimonials</a></li>
+            <li><a class="js-scroll-link" href="javascript:;" data-link="4">experience</a></li>
+            <li><a class="js-scroll-link" href="javascript:;" data-link="5">blog</a></li>
+            <li><a class="js-scroll-link" href="javascript:;" data-link="6">CONTACT</a></li>
+          </ul>
+          <div class="header__phone"><a href="tel:+23155908368">+2(315) 590 83 68</a></div>
+        </div>
+      </div>
+      <div class="scroll">
+        <div class="home-page">
+          <div class="page-title show">
+            <ul>
+              <li>
+                <div class="title">my name is robert</div>
+                <div class="number">1.0</div>
+              </li>
+              <li>
+                <div class="title">Portfolio</div>
+                <div class="number">2.0</div>
+              </li>
+              <li>
+                <div class="title">my awwards</div>
+                <div class="number">3.0</div>
+              </li>
+              <li>
+                <div class="title">testimonials</div>
+                <div class="number">4.0</div>
+              </li>
+              <li>
+                <div class="title">working experience</div>
+                <div class="number">5.0</div>
+              </li>
+              <li>
+                <div class="title">from the blog</div>
+                <div class="number">5.0</div>
+              </li>
+              <li>
+                <div class="title">contact</div>
+                <div class="number">6.0</div>
+              </li>
+            </ul>
+            <canvas class="noise noise--inner" id="noise_menu"></canvas>
+          </div>
+          <div class="scrollable">
+            <section class="home">
+              <div class="sticky-title">
+                <ul>
+                  <li>
+                    <div>my name is robert</div>
+                    <div>1.0</div>
                   </li>
                 </ul>
-              </nav>
-            </div>
-            <div class="header-contacts">
-              <!-- social media-->
-              <div class="social">
-                <ul class="social-list">
-                  <li class="social-item"><a class="social-link" href="#"><i class="svg-image-facebook"></i></a></li>
-                  <li class="social-item"><a class="social-link" href="#"><i class="svg-image-instagram"></i></a></li>
-                  <li class="social-item"><a class="social-link" href="#"><i class="svg-image-linkedin"></i></a></li>
+              </div>
+              <div class="content">
+                <div class="content__left">
+                  <div class="content__title">
+                    <div class="h1">GET YOUR</div>
+                    <div class="h1">GREAT</div>
+                    <div class="h1">Design</div>
+                  </div>
+                  <div class="content__description">
+                    <div class="small">Hello, my name is Pattison and i am UX/UI designer and front-end developer, im working via developer 9 years and i know all about design</div>
+                  </div>
+                  <div class="content__btn-block">
+                    <div class="content__btn-label small">(hire me :)</div><a class="content__btn-btn btn btn--arrow js-scroll-link" href="#hireme" data-link="6">
+                      <svg>
+                        <use xlink:href="./svg/sprite.svg#arrow"></use>
+                      </svg></a>
+                  </div>
+                  <div class="home__numbers">
+                    <div class="home__number">
+                      <div class="home__number-digital" data-number="8">8</div>
+                      <div class="home__number-text small">Years <br>experience</div>
+                    </div>
+                    <div class="home__number">
+                      <div class="home__number-digital" data-number="5">5</div>
+                      <div class="home__number-text small">Themeforest <br>awwards</div>
+                    </div>
+                    <div class="home__number">
+                      <div class="home__number-digital" data-number="60">60</div>
+                      <div class="home__number-text small">Projects <br>Done</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content__right">
+                  <div class="home__circles">
+                    <div class="home__circles-lines"></div>
+                    <div class="home__circle home__circle--left"><img class="home__circle-img" src="img/image-1.jpg" alt=""></div>
+                    <div class="home__circle home__circle--right">
+                      <div class="home__circle-text">
+                        <label class="input-file" for="brief"><span>Fill out the <br>brief to find out <br>the cost</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="scrollable">
+            <section class="projects">
+              <div class="sticky-title">
+                <ul>
+                  <li>
+                    <div>Portfolio</div>
+                    <div>2.0</div>
+                  </li>
                 </ul>
-              </div><a class="header-contacts__link" href="tel:+23254523235">+84 974 564 332</a>
-              <p class="header-contacts__copyright">© vandoan 1988.</p>
-            </div>
+              </div>
+              <div class="content">
+                <div class="content__left">
+                  <div class="content__title">
+                    <div class="h1">projects</div>
+                  </div>
+                  <ul class="content__menu projects__menu">
+                    <li class="active"><a href="javascript:;">BERLING agency website</a></li>
+                    <li><a href="javascript:;">Prettylittlething american shop</a></li>
+                    <li><a href="javascript:;">Benhome - Architecture theme</a></li>
+                    <li><a href="javascript:;">Gilhouse - architecture website</a></li>
+                    <li><a href="javascript:;">gilber - personal website</a></li>
+                    <li><a href="javascript:;">jonny - personal website</a></li>
+                  </ul>
+                  <div class="content__btn-block">
+                    <div class="content__btn-label small">View all works</div><a class="content__btn-btn btn btn--arrow" href="https://www.behance.net/" target="_blank" rel="nofollow">
+                      <svg>
+                        <use xlink:href="./svg/sprite.svg#arrow"></use>
+                      </svg></a>
+                  </div>
+                </div>
+                <div class="content__right">
+                  <div class="projects__blocks">
+                    <div class="projects__block active"><a href="#" target="_blank" rel="nofollow"><img src="img/project-1.jpg" alt=""></a></div>
+                    <div class="projects__block active"><a href="#" target="_blank" rel="nofollow"><img src="img/project-2.jpg" alt=""></a></div>
+                    <div class="projects__block active"><a href="#" target="_blank" rel="nofollow"><img src="img/project-3.jpg" alt=""></a></div>
+                    <div class="projects__block active"><a href="#" target="_blank" rel="nofollow"><img src="img/project-4.jpg" alt=""></a></div>
+                    <div class="projects__block active"><a href="#" target="_blank" rel="nofollow"><img src="img/project-5.jpg" alt=""></a></div>
+                    <div class="projects__block active"><a href="#" target="_blank" rel="nofollow"><img src="img/project-6.jpg" alt=""></a></div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
-        </div>
-        <a class="header-contacts__link header-phone" href="tel:+23254523235">+84 974 564 332</a>
-        <div class="header-burger js-header-burger">
-          <div class="header-burger-inner"><span class="header-burger-line"></span><span class="header-burger-line"></span><span class="header-burger-line"></span></div>
-        </div>
-      </div>
-    </header>
-    <!-- social media-->
-    <!-- <div class="social">
-      <ul class="social-list">
-        <li class="social-item"><a class="social-link" href="#"><i class="svg-image-facebook"></i></a></li>
-        <li class="social-item"><a class="social-link" href="#"><i class="svg-image-instagram"></i></a></li>
-        <li class="social-item"><a class="social-link" href="#"><i class="svg-image-linkedin"></i></a></li>
-      </ul>
-    </div> -->
-    <!-- Page content-->
-    <main class="main">
-      <div class="sections-wrap">
-        <div class="sections js-sections">
-          <!-- Hero section. First section-->
-          <section class="section pp-scrollable" id="home">
-            <div class="hero section-inner" style="background-image: url(https://64.media.tumblr.com/40339aeb7ca18eec1a9f9d07b1cc6f64/acdab934ce04b369-86/s2048x3072/96f0f81369f94cf8883a74182ac02e1632ce738e.jpg)">
-              <div class="container section-cnt">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="hero-play">
-                      <!-- Youtube video will open on click-->
-                      <a class="hero-play-btn js-video-play" href="#"><i class="svg-image-play"></i></a>
-                    </div>
-                    <h1 class="h1 hero-title">Doan<br>Nguyen</h1>
-                    <p class="hero-txt">Hi, my&nbsp;name is&nbsp;Văn Đoàn, I&rsquo;m&nbsp;fullstack developer</p>
+          <div class="scrollable">
+            <section class="awards">
+              <div class="sticky-title">
+                <ul>
+                  <li>
+                    <div>my awwards</div>
+                    <div>3.0</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content">
+                <div class="content__left">
+                  <div class="content__title">
+                    <div class="h1">Explore my</div>
+                    <div class="h1">profile</div>
+                  </div>
+                  <div class="content__description">
+                    <div class="small">Hello, my name is Pavel Suslov and i am UX/UI designer and front-end developer, im working via developer 9 years and i know all about design</div>
+                  </div>
+                  <div class="content__btn-block">
+                    <div class="content__btn-label small">View behance</div><a class="content__btn-btn btn btn--arrow" href="#">
+                      <svg>
+                        <use xlink:href="./svg/sprite.svg#arrow"></use>
+                      </svg></a>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-          <!-- Experience section. Second section-->
-          <section class="section pp-scrollable" id="about">
-            <div class="experience section-inner">
-              <div class="container section-cnt">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="experience-img">
-                      <img src="images/ex01.jpg" alt="">
-                    </div>
-                  </div>
-                  <div class="col-lg-5 offset-xl-1">
-                    <div class="experience-info">
-                      <h2 class="h2 experience-info__title">Experience Summary</h2>
-                      <div class="services-item__descr">•	5+ years experienced in web development.</div>
-                      <div class="services-item__descr">•	Experienced with microservices platform, Kubernetes.</div>
-                      <div class="services-item__descr">•	Eager to learn new tools, technologies.</div>
-                      <div class="services-item__descr">•	Ability to study new technologies quickly.</div>
-                      <div class="services-item__descr">•	Team work with Scrum methodology (Agile)</div>
-                      <div class="experience-skills">
-                        <div class="experience-skills__item">
-                          <div class="experience-skills__top">
-                            <h3 class="experience-skills__title">HTML/CSS/JS</h3>
-                            <p class="experience-skills__percent">80%</p>
-                          </div>
-                          <progress class="html5" max="100" value="80"></progress>
-                        </div>
-                        <div class="experience-skills__item">
-                          <div class="experience-skills__top">
-                            <h3 class="experience-skills__title">ReactJs</h3>
-                            <p class="experience-skills__percent">70%</p>
-                          </div>
-                          <progress class="html5" max="100" value="70"></progress>
-                        </div>
-                        <div class="experience-skills__item">
-                          <div class="experience-skills__top">
-                            <h3 class="experience-skills__title">DevOps</h3>
-                            <p class="experience-skills__percent">65%</p>
-                          </div>
-                          <progress class="html5" max="100" value="65"></progress>
-                        </div>
-                        <div class="experience-skills__item">
-                          <div class="experience-skills__top">
-                            <h3 class="experience-skills__title">English</h3>
-                            <p class="experience-skills__percent">65%</p>
-                          </div>
-                          <progress class="html5" max="100" value="65"></progress>
-                        </div>
-                        <div class="experience-skills__item">
-                          <div class="experience-skills__top">
-                            <h3 class="experience-skills__title">Team work</h3>
-                            <p class="experience-skills__percent">90%</p>
-                          </div>
-                          <progress class="html5" max="100" value="90"></progress>
-                        </div>
+                <div class="content__right">
+                  <div class="content__subtitle">Professional <span>awards</span></div>
+                  <div class="content__awards awards__list">
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/award-1.png" alt=""></div>
+                      <div class="content__award-title">
+                        <p>1ST WINNER CREATIVE DESIGN CHAMPIONSHIP</p>
                       </div>
+                      <div class="content__award-text small">For most favorited design voted by NY City Style customers</div>
+                    </div>
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/award-2.png" alt=""></div>
+                      <div class="content__award-title">
+                        <p>BEST 5 BRANDING PROJECT OF NOMINATIONS</p>
+                      </div>
+                      <div class="content__award-text small">For best creative & usable health care mobile app design</div>
+                    </div>
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/award-3.png" alt=""></div>
+                      <div class="content__award-title">
+                        <p>8 Years of Membership</p>
+                      </div>
+                      <div class="content__award-text small">Has been part of the Envato Community for over 8 years</div>
+                    </div>
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/award-4.png" alt=""></div>
+                      <div class="content__award-title">
+                        <p>Exclusive Author</p>
+                      </div>
+                      <div class="content__award-text small">Sells items exclusively on Envato Market</div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-          <!-- Projects section. Fourth section-->
-          <section class="section pp-scrollable" id="projects">
-            <div class="projects section-inner">
-              <div class="container section-cnt">
-                <div class="projects-list">
-                  <div class="content-marquee has-stopable">
-                    <div class="content-marquee__original">
-                      <div class="projects-list__item">
-                        <div class="stroke-text vlt-stroke-text--lg">
-                          <div class="projects-list__txt">HURA</div>
-                          <div class="projects-list__hover js-projects-img">
-                            <a class="projects-list__img" href="./projects/hura.html">
-                              <img src="images/03.png" alt="">
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="projects-list__item">
-                        <div class="projects-list__txt">NAVIFEED</div>
-                        <div class="projects-list__hover js-projects-img">
-                          <a class="projects-list__img" href="./projects/tranvanthao.html"> 
-                            <img src="images/14.jpg" alt="">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="projects-list__item">
-                        <div class="projects-list__txt">Tranvanthao</div>
-                        <div class="projects-list__hover js-projects-img">
-                          <a class="projects-list__img" href="./projects/hura.html"> 
-                            <img src="images/02.png" alt="">
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="content-marquee__copy">
-                      <div class="projects-list__item">
-                        <div class="stroke-text vlt-stroke-text--lg">
-                          <div class="projects-list__txt">HURA</div>
-                          <div class="projects-list__hover js-projects-img">
-                            <a class="projects-list__img" href="project.html">
-                              <img src="images/03.png" alt="">
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="projects-list__item">
-                        <div class="projects-list__txt">NAVIFEED</div>
-                        <div class="projects-list__hover js-projects-img">
-                          <a class="projects-list__img" href="project.html"> 
-                            <img src="images/14.jpg" alt="">
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div class="projects-list__item">
-                        <div class="projects-list__txt">Tranvanthao</div>
-                        <div class="projects-list__hover js-projects-img">
-                          <a class="projects-list__img" href="project.html"> 
-                            <img src="images/02.png" alt="">
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- Services section. Fifth section-->
-          <section class="section pp-scrollable" id="skill">
-            <div class="services section-inner" style="background-image: url(images/services-bg.jpg)">
-              <div class="container section-cnt">
-                <div class="row">
-                  <div class="col-lg-3">
-                    <h2 class="h2 services-title">
-                      <span class="mark">7</span> 
-                      <span class="txt">Years<br>Experience<br>in web development</span>
-                    </h2>
-                  </div>
-                  <div class="col-lg-7 offset-xl-2 offset-lg-1">
-                    <div class="section-cnt">
-                      <div class="education-table">
-                        <div class="education-table__row align-items-center">
-                          <div class="education-table__cell">
-                            <img src="images/edu1.png" alt="">
-                          </div>
-                          <div class="education-table__cell">
-                            <p class="education-table__txt">Bachelor Degree</p>
-                          </div>
-                          <div class="education-table__cell">
-                            <p class="education-table__txt">Information Technology</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="services-items">
-                      <div class="services-item">
-                        <h4 class="services-item__title">Soft Skills</h4>
-                        <p class="services-item__descr">•	Teamwork: Work with others well.</p>
-                        <p class="services-item__descr">•	Never stop studying, eager to learn and have ability to learn, self-training quickly.</p>
-                        <p class="services-item__descr">•	English: Speak English and write English moderate, read/listening well.</p>
-                        <p class="services-item__descr">•	Problem Solving: Good.</p>
-                        <p class="services-item__descr">•	Capable of working under high pressure.</p>
-                      </div>
-                      <div class="services-item">
-                        <h4 class="services-item__title">Programming Skills</h4>
-                        <p class="services-item__descr">•	Languages: HTML, CSS, SCSS, Jquery, ReactJS, Redux, NodeJS, JavaScript, Bootstrap</p>
-                        <p class="services-item__descr">•	Development tool: Visual Studio, Visual Studio Code, MySql Work bench MS SQL SERVER …</p>
-                        <p class="services-item__descr">•	Entity Framework, Extensions function, Expression</p>
-                        <p class="services-item__descr">•	Mobile by React Native.</p>
-                      </div>
-                      <div class="services-item">
-                        <h4 class="services-item__title">Database</h4>
-                        <p class="services-item__descr">•	Experience with MySQL, MongoDB, MSSQL SERVER</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-         <!-- Contact section. Eight section-->
-          <section class="section pp-scrollable" id="contact">
-            <div class="contact section-inner" style="background-image: url(images/contact-bg.jpg)">
-              <div class="container section-cnt">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="contact-cnt">
-                      <div class="contact-main">
-                        <h2 class="h2 contact-title">Contact me</h2>
-                      </div>
-                      <div class="contact-logos row">
-                        <div class="contact_info">• +84 974 564 332</div>
-                        <div class="contact_info">• doanguyen512@gmail.com</div>
-                        <div class="contact_info">• Ho Chi Minh, VietNam</div>
-                        <div class="contact_info">• Male</div>
-                        <div class="education-btns">
-                          <a class="education-btn btn" href="https://www.topcv.vn/xem-cv/VQQEBAdTAQZfXwMFUgQCCwcAA1IEB1QFXARXDwac40">Download resume</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-7 offset-xl-1 col-lg-7 offset-lg-1">
-                    <div class="contact-info">
-                      <form class="js-form contact-form" action="#"> 
-                        <div class="form-group">
-                          <label class="form-label" for="name">Name</label>
-                          <input class="form-control" id="name" type="text" name="name" required aria-required="true">
-                        </div>
-                        <div class="form-group">
-                          <label class="form-label" for="email">E-mail</label>
-                          <input class="form-control" id="email" type="email" name="email" required aria-required="true">
-                        </div>
-                        <div class="form-group">
-                          <label class="form-label" for="message">Message</label>
-                          <textarea class="form-control" id="message" name="message" cols="30" rows="10" required aria-required="true"> </textarea>
-                        </div>
-                        <input class="contact-btn btn" type="submit" value="submit">
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-        <!-- Scroll for sections-->
-        <div class="section-scroll js-section-scroll"></div>
-      </div>
-      <div class="modal modal-message fade" id="success" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header"><span class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></span>
-              <h2 class="modal-title">Thank you</h2>
-              <p class="modal-subtitle">Your message is successfully sent...</p>
-            </div>
+            </section>
           </div>
-        </div>
-      </div>
-      <div class="modal modal-message fade" id="error" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header"><span class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></span>
-              <h2 class="modal-title">Sorry</h2>
-              <p class="modal-subtitle"> Something went wrong </p>
-            </div>
+          <div class="scrollable">
+            <section class="testimonials">
+              <div class="sticky-title">
+                <ul>
+                  <li>
+                    <div>testimonials</div>
+                    <div>4.0</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content" style="background-image: url(images/testmonials-bg.png); background-size: auto 100%; background-repeat: no-repeat; background-position: center center;">
+                <div class="content__left">
+                  <div class="content__title">
+                    <div class="h1">+250</div>
+                    <div class="h1">happy</div>
+                    <div class="h1">clients</div>
+                    <div class="small">I love my work and every project is my pride</div>
+                  </div>
+                  <div class="testimonials__clients">
+                    <div class="testimonials__client"><img src="img/client-1.png" alt=""></div>
+                    <div class="testimonials__client"><img src="img/client-2.png" alt=""></div>
+                    <div class="testimonials__client"><img src="img/client-3.png" alt=""></div>
+                    <div class="testimonials__client"><img src="img/client-4.png" alt=""></div>
+                  </div>
+                </div>
+                <div class="content__right">
+                  <div class="content__subtitle"><span>Creative</span> & dedicated is things that my studio brings for your business</div>
+                  <div class="content__slider slides testimonials__slider">
+                    <div class="slides__container">
+                      <div class="slides__inner">
+                        <div class="slide">
+                          <div class="content__slider-text small">“ If you are seeking an Interior designer that will understand exactly your needs, and someone who will utilise their creative and technical skills in parity with your taste, then Suzanne at The Bauhaus Studio is perfect.</div>
+                          <div class="content__slider-name">david & elisa</div>
+                          <div class="content__slider-staff small">Apartment view lake at Brooklyn</div>
+                        </div>
+                        <div class="slide">
+                          <div class="content__slider-text small">“ If you are seeking an Interior designer that will understand exactly your needs, and someone who will utilise their creative and technical skills in parity with your taste, then Suzanne at The Bauhaus Studio is perfect.</div>
+                          <div class="content__slider-name">elisa</div>
+                          <div class="content__slider-staff small">Apartment view lake at Brooklyn</div>
+                        </div>
+                        <div class="slide">
+                          <div class="content__slider-text small">“ If you are seeking an Interior designer that will understand exactly your needs, and someone who will utilise their creative and technical skills in parity with your taste, then Suzanne at The Bauhaus Studio is perfect.</div>
+                          <div class="content__slider-name">david & elisa</div>
+                          <div class="content__slider-staff small">Apartment view lake at Brooklyn</div>
+                        </div>
+                        <div class="slide">
+                          <div class="content__slider-text small">“ If you are seeking an Interior designer that will understand exactly your needs, and someone who will utilise their creative and technical skills in parity with your taste, then Suzanne at The Bauhaus Studio is perfect.</div>
+                          <div class="content__slider-name">david</div>
+                          <div class="content__slider-staff small">Apartment view lake at Brooklyn</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slides__controls">
+                      <button class="slides__btn slides__btn--prev btn btn--invert btn--arrow" id="prevButton">
+                        <svg>
+                          <use xlink:href="./svg/sprite.svg#arrow"></use>
+                        </svg>
+                      </button>
+                      <button class="slides__btn slides__btn--next btn btn--arrow" id="nextButton">
+                        <svg>
+                          <use xlink:href="./svg/sprite.svg#arrow"></use>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="scrollable">
+            <section class="experience">
+              <div class="sticky-title">
+                <ul>
+                  <li>
+                    <div>working experience</div>
+                    <div>5.0</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content">
+                <div class="content__bg" style="background-image: url(images/exp-bg.jpg);"></div>
+                <div class="content__left">
+                  <div class="content__title">
+                    <div class="h1">Education &</div>
+                    <div class="h1">experience</div>
+                  </div>
+                  <div class="content__description">
+                    <div class="small">I have been developing sites for 8 years and I know for sure the main trends and directions of modern design, you will get a decent result</div>
+                  </div>
+                  <div class="content__btn-block"><a class="content__btn-btn btn" href="#">resume</a></div>
+                </div>
+                <div class="content__right">
+                  <div class="content__awards experience__list">
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/soc-fb.svg" alt=""></div>
+                      <div class="content__award-title"><span class="small">2019-2021</span>
+                        <p>facebook</p>
+                      </div>
+                      <div class="content__award-text small">Assertively exploit wireless initiatives rather than synergistic core competencies.</div>
+                    </div>
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/soc-be.svg" alt=""></div>
+                      <div class="content__award-title"><span class="small">2017-2019</span>
+                        <p>behance</p>
+                      </div>
+                      <div class="content__award-text small">im working via developer 9 years and i know all about design</div>
+                    </div>
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/soc-tw.svg" alt=""></div>
+                      <div class="content__award-title"><span class="small">2014-2017</span>
+                        <p>twitter</p>
+                      </div>
+                      <div class="content__award-text small">Credibly streamline mission-critical value with multifunctional functionalities. Leading team designers.</div>
+                    </div>
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/soc-inst.svg" alt=""></div>
+                      <div class="content__award-title"><span class="small">2012-2014</span>
+                        <p>instagramm</p>
+                      </div>
+                      <div class="content__award-text small">Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</div>
+                    </div>
+                    <div class="content__award">
+                      <div class="content__award-img"><img src="img/soc-in.svg" alt=""></div>
+                      <div class="content__award-title"><span class="small">206-2012</span>
+                        <p>linkedin</p>
+                      </div>
+                      <div class="content__award-text small">Assertively exploit wireless initiatives rather than synergistic core competencies.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="scrollable">
+            <section class="news">
+              <div class="sticky-title">
+                <ul>
+                  <li>
+                    <div>from the blog</div>
+                    <div>5.0</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content">
+                <div class="content__left">
+                  <div class="content__title">
+                    <div class="h1">latest</div>
+                    <div class="h1">news</div>
+                    <div class="small">I love my work and every project is my pride</div>
+                  </div>
+                  <ul class="content__menu news__menu">
+                    <li class="active"><a href="javascript:;">How to design well?</a></li>
+                    <li><a href="javascript:;">Lemon Illustration design</a></li>
+                    <li><a href="javascript:;">Paul theme Branding</a></li>
+                    <li><a href="javascript:;">Best typography 2020</a></li>
+                    <li><a href="javascript:;">my name is pattison</a></li>
+                  </ul>
+                  <div class="content__btn-block">
+                    <div class="content__btn-label small">View all works</div><a class="content__btn-btn btn btn--arrow" href="blog.html" target="_blank">
+                      <svg>
+                        <use xlink:href="./svg/sprite.svg#arrow"></use>
+                      </svg></a>
+                  </div>
+                </div>
+                <div class="content__right">
+                  <div class="news__blocks">
+                    <div class="news__block active">
+                      <div class="news__block-info">
+                        <div class="news__block-date small">3th January, 2020</div>
+                        <div class="news__block-text small">Berling ® —  minimalism photography agency website. with the help of a  minimalistic design, the site turned out to be very  user-friendly  and responsive, and the brand became more.</div>
+                        <div class="news__block-number">(01)</div>
+                      </div>
+                      <div class="news__block-image"><a href="blog.html" target="_blank"><img src="img/news-1.jpg" alt=""></a></div>
+                    </div>
+                    <div class="news__block active">
+                      <div class="news__block-info">
+                        <div class="news__block-date small">3th January, 2020</div>
+                        <div class="news__block-text small">Berling ® —  minimalism photography agency website. with the help of a  minimalistic design, the site turned out to be very  user-friendly  and responsive, and the brand became more.</div>
+                        <div class="news__block-number">(02)</div>
+                      </div>
+                      <div class="news__block-image"><a href="blog.html" target="_blank"><img src="img/news-2.jpg" alt=""></a></div>
+                    </div>
+                    <div class="news__block active">
+                      <div class="news__block-info">
+                        <div class="news__block-date small">3th January, 2020</div>
+                        <div class="news__block-text small">Berling ® —  minimalism photography agency website. with the help of a  minimalistic design, the site turned out to be very  user-friendly  and responsive, and the brand became more.</div>
+                        <div class="news__block-number">(03)</div>
+                      </div>
+                      <div class="news__block-image"><a href="blog.html" target="_blank"><img src="img/news-3.jpg" alt=""></a></div>
+                    </div>
+                    <div class="news__block active">
+                      <div class="news__block-info">
+                        <div class="news__block-date small">3th January, 2020</div>
+                        <div class="news__block-text small">Berling ® —  minimalism photography agency website. with the help of a  minimalistic design, the site turned out to be very  user-friendly  and responsive, and the brand became more.</div>
+                        <div class="news__block-number">(04)</div>
+                      </div>
+                      <div class="news__block-image"><a href="blog.html" target="_blank"><img src="img/news-4.jpg" alt=""></a></div>
+                    </div>
+                    <div class="news__block active">
+                      <div class="news__block-info">
+                        <div class="news__block-date small">3th January, 2020</div>
+                        <div class="news__block-text small">Berling ® —  minimalism photography agency website. with the help of a  minimalistic design, the site turned out to be very  user-friendly  and responsive, and the brand became more.</div>
+                        <div class="news__block-number">(05)</div>
+                      </div>
+                      <div class="news__block-image"><a href="blog.html" target="_blank"><img src="img/news-5.jpg" alt=""></a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="scrollable" id="hireme">
+            <section class="contacts">
+              <div class="sticky-title">
+                <ul>
+                  <li>
+                    <div>contact</div>
+                    <div>6.0</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content">
+                <div class="content__left">
+                  <div class="content__title">
+                    <div class="h1">Hire me</div>
+                    <div class="small">Enjoy coffe with me</div>
+                  </div>
+                  <ul class="content__menu contacts__menu">
+                    <li class="active"><a class="noicon" href="javascript:;" onclick="window.open('mailto:robert@info.com')">mail: robert@info.com</a></li>
+                    <li class="active"><a class="noicon" href="javascript:;" onclick="window.open('skype:robert')">skype: robert</a></li>
+                    <li class="active"><a href="https://behance.net/Paulggooo" target="_blank">www.behance.net/Paulggooo</a></li>
+                    <li class="active"><a class="noicon" href="https://t.me/robert_inc" target="_blank">telegram: robert_inc</a></li>
+                  </ul>
+                  <div class="contacts__copyright small">© Pattison 2021.  All Rights Resevered</div>
+                </div>
+                <div class="content__right">
+                  <div class="content__subtitle">Let's grab a coffee and jump on <span>conversation</span> chat with me.</div>
+                  <form class="content__contacts contacts__form js-contact-form" method="post">
+                    <div class="content__brief">
+                      <div class="content__brief-title">
+                        <label class="input-file">
+                          <input type="file" name="file" id="brief"><span>send a brief</span>
+                        </label>
+                      </div>
+                      <div class="content__brief-text small">I recommend filling out a brief to assess the cost of the project. <label for="brief">Brief</label></div>
+                    </div>
+                    <div class="content__form">
+                      <label class="content__form-input">
+                        <input type="text" name="name"><span class="content__form-placeholder">name</span>
+                      </label>
+                      <label class="content__form-input">
+                        <input type="email" name="emal" required=""><span class="content__form-placeholder">EMAIL *</span>
+                      </label>
+                      <label class="content__form-input">
+                        <input type="text" name="msg" required="" minlength="10"><span class="content__form-placeholder">MESSAGE *</span>
+                      </label>
+                      <div class="content__form-btn">
+                        <button class="btn btn--arrow" type="submit">
+                          <svg>
+                            <use xlink:href="./svg/sprite.svg#arrow"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
     </main>
-    <!-- footer-->
-    <footer class="footer">
-      <div class="container-fluid">
-        <p class="footer-copyright">© Văn Đoàn 2023.</p>
-        <a class="top-arrow" href="#">
-          <i class="svg-image-arrow-top"></i>
-        </a>
-      </div>
-    </footer>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.pagepiling.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
